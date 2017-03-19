@@ -21,13 +21,29 @@ Map::Map()
 	for (int i = 0; i < Map::ROWS_MAP; i++) {
 		for (int j = 0; j < Map::COLUMNS_MAP; j++) {
 			Map::map[i][j].hasCoin = 0;
-			Map::map[i][j].symbolToShow = '·';
+			Map::map[i][j].symbolToShow = '.';
 			Map::map[i][j].NUM_COLUMN = j;
 			Map::map[i][j].NUM_ROW = i;
 		}
 	}
 }
 
+void Map::Modify(int ROW, int COL, char value) {
+	Map::map[ROW][COL].symbolToShow = value;
+	if (value == '$')
+		Map::map[ROW][COL].hasCoin = true;
+	else
+		Map::map[ROW][COL].hasCoin = false;
+}
+
+void Map::PrintMap() {
+	for (int i = 0; i < Map::ROWS_MAP; i++) {
+		for (int j = 0; j < Map::COLUMNS_MAP; j++) {
+			std::cout << Map::map[i][j].symbolToShow;
+		}
+		std::cout << std::endl;
+	}
+}
 
 Map::~Map()
 {

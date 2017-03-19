@@ -16,6 +16,10 @@ public:
 
 	Map();
 
+	void Modify(int ROW, int COL, char value);
+
+	void PrintMap();
+
 	~Map();
 };
 
