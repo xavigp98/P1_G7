@@ -1,5 +1,6 @@
 #include "Map.h"
 #include <iostream>
+#include <cstdlib>
 
 
 
@@ -20,7 +21,8 @@ Map::Map()
 
 	for (int i = 0; i < Map::ROWS_MAP; i++) {
 		for (int j = 0; j < Map::COLUMNS_MAP; j++) {
-			Map::map[i][j].hasCoin = 0;
+			Map::map[i][j].hasCoin = false;
+			Map::map[i][j].isPlayer = false;
 			Map::map[i][j].symbolToShow = '.';
 			Map::map[i][j].NUM_COLUMN = j;
 			Map::map[i][j].NUM_ROW = i;
