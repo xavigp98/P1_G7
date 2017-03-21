@@ -1,9 +1,11 @@
 #pragma once
-class Player
+/*class Player
 {
 public:
 	int playerCols, playerRows;
-	Player();
+	Map &myMap;
+	CoinManager &myManager;
+	Player(Map &m, CoinManager &p);
 	~Player();
-};
+};*/
 

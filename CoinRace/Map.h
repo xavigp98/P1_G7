@@ -3,7 +3,7 @@ class Map
 {
 public:
 
-	static int difficulty, ROWS_MAP,COLUMNS_MAP;
+	int difficulty, ROWS_MAP,COLUMNS_MAP;
 
 	struct cell {
 		bool hasCoin;
@@ -13,7 +13,7 @@ public:
 		int NUM_ROW;
 	};
 
-	static cell** map;
+	cell** map;
 
 	Map();
 

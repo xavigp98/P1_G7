@@ -39,6 +39,7 @@ void Map::Modify(int ROW, int COL, char value) {
 }
 
 void Map::PrintMap() {
+	system("CLS");
 	for (int i = 0; i < Map::ROWS_MAP; i++) {
 		for (int j = 0; j < Map::COLUMNS_MAP; j++) {
 			std::cout << Map::map[i][j].symbolToShow;

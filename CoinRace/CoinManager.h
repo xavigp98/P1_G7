@@ -4,7 +4,8 @@ class CoinManager
 public:
 
 	int coins;
-	CoinManager();
+	Map &myMap;
+	CoinManager(Map &m);
 	void Reset();
 	~CoinManager();
 };
