@@ -1,10 +1,12 @@
 #pragma once
+#include "Map.h"
+
 class CoinManager
 {
 public:
 
 	int coins;
-	Map &myMap;
+	Map *myMap;
 	CoinManager(Map &m);
 	~CoinManager();
 };
