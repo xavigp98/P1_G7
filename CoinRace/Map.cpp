@@ -7,8 +7,8 @@
 Map::Map(int dificultad)
 {
 	difficulty = dificultad;
-	ROWS_MAP = 5 * difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
-	COLUMNS_MAP = 5 *difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
+	ROWS_MAP = (5 * difficulty )+ rand() % ((5 * difficulty * 2) - (5 * difficulty));
+	COLUMNS_MAP = (5 *difficulty) + rand() % ((5 * difficulty * 2) - (5 * difficulty));
 
 	map = new char*[Map::ROWS_MAP];
 
