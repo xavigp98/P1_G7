@@ -14,7 +14,7 @@ int main() {
 
 	std::cin >> difficulty;
 	Map Mapa(difficulty);
-	CoinManager Manager(Mapa,difficulty);
+	CoinManager Manager(Mapa);
 	Player myPlayer(Mapa, Manager);
 	int c = 0;
 	std::clock_t t = std::clock();

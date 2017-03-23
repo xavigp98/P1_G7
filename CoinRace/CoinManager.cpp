@@ -4,7 +4,7 @@
 #include <cstdlib>
 
 
-CoinManager::CoinManager(Map &m, int difficulty):myMap(&m)
+CoinManager::CoinManager(Map &m):myMap(&m)
 {
 	coins = (static_cast<int>(myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.03 )+ rand() % static_cast<int>(((myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.13)- (myMap->COLUMNS_MAP * myMap->ROWS_MAP)*0.03);
 
