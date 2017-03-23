@@ -7,7 +7,7 @@ public:
 
 	int coins,coinsFinal;
 	Map *myMap;
-	CoinManager(Map &m);
+	CoinManager(Map &m, int difficulty);
 	void CoinManager::Manage();
 	~CoinManager();
 };

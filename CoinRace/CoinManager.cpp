@@ -4,11 +4,11 @@
 #include <cstdlib>
 
 
-CoinManager::CoinManager(Map &m):myMap(&m)
+CoinManager::CoinManager(Map &m, int difficulty):myMap(&m)
 {
 	coins = (static_cast<int>(myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.03 )+ rand() % static_cast<int>(((myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.13)- (myMap->COLUMNS_MAP * myMap->ROWS_MAP)*0.03);
 
-	coinsFinal = 30 * myMap->difficulty + rand() % ((30 * myMap->difficulty * 2) - (30 * myMap->difficulty));
+	coinsFinal = 30 * myMap->difficulty + rand() % ((30 *myMap->difficulty * 2) - (30 * myMap->difficulty));
 
 	int i = 0;
 

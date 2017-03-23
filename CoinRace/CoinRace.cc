@@ -8,9 +8,13 @@
 
 int main() {
 	srand(time(nullptr));
-	Input::Key tecla = Input::Key::W;
-	Map Mapa;
-	CoinManager Manager(Mapa);
+	int difficulty;
+	Input::Key tecla;
+	std::cout << "Escoge nivel de dificultad:" << std::endl << "Pulsa 1 para nivel facil" << std::endl << "Pulsa 2 para nivel normal" << std::endl << "Pulsa 3 para nivel dificil" << std::endl;
+
+	std::cin >> difficulty;
+	Map Mapa(difficulty);
+	CoinManager Manager(Mapa,difficulty);
 	Player myPlayer(Mapa, Manager);
 	int c = 0;
 	std::clock_t t = std::clock();

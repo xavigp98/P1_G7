@@ -4,13 +4,9 @@
 
 
 
-Map::Map()
+Map::Map(int dificultad)
 {
-	std::cout << "Escoge nivel de dificultad:" << std::endl << "Pulsa 1 para nivel facil" << std::endl << "Pulsa 2 para nivel normal" << std::endl << "Pulsa 3 para nivel dificil" << std::endl;
-
-	std::cin >> difficulty;
-		
-
+	difficulty = dificultad;
 	ROWS_MAP = 5 * difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
 	COLUMNS_MAP = 5 *difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
 

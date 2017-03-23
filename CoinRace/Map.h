@@ -8,7 +8,7 @@ public:
 
 	int difficulty, ROWS_MAP,COLUMNS_MAP;
 
-	Map();
+	Map(int dificultad);
 
 	void Modify(int ROW, int COL, char value);
 
