@@ -15,8 +15,8 @@ CoinManager::CoinManager(Map &m):myMap(&m)
 	while (i < coins) {
 		int columns = rand() % myMap->COLUMNS_MAP;
 		int rows = rand() % myMap->ROWS_MAP;
-		if (myMap->map[rows][columns]=='.') {
-			myMap->map[rows][columns] = '$';
+		if (myMap->getPos(rows,columns)=='.') {
+			myMap->Modify(rows,columns,'$');
 			i++;
 		}
 	}
@@ -26,7 +26,7 @@ void CoinManager::Manage() {
 	int c = 0;
 	for (int i = 0; i < myMap->ROWS_MAP; i++) {
 		for (int j = 0; j < myMap->COLUMNS_MAP; j++) {
-			if (myMap->map[i][j] == '$') {
+			if (myMap->getPos(i,j) == '$') {
 				c += 1;
 			}
 
@@ -39,17 +39,15 @@ void CoinManager::Manage() {
 		while (i < coins) {
 			int columns = rand() % myMap->COLUMNS_MAP;
 			int rows = rand() % myMap->ROWS_MAP;
-			if (myMap->map[rows][columns] == '.') {
-				myMap->map[rows][columns] = '$';
+			if (myMap->getPos(rows,columns) == '.') {
+				myMap->Modify(rows,columns,'$');
 				i++;
 			}
 		}
 	}
 	coins = c;
-	//std::cout << std::endl << "Has recogido: " << coinsPlayer << "/" << coinsFinal;
 }
 
 CoinManager::~CoinManager()
 {
-	delete myMap;
 }

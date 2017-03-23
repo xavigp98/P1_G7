@@ -13,8 +13,8 @@ Player::Player(Map &m, CoinManager &p):myMap(&m),myManager(&p)
 	while (i < 1) {
 		playerCols = rand() % myMap->COLUMNS_MAP;
 		playerRows = rand() % myMap->ROWS_MAP;
-		if (myMap->map[playerRows][playerCols]=='.') {
-			myMap->map[playerRows][playerCols]= '@';
+		if (myMap->getPos(playerRows,playerCols) =='.') {
+			myMap->Modify(playerRows, playerCols, '@');
 			i++;
 		}
 	}
@@ -26,37 +26,38 @@ void Player::Move(Input::Key key) {
 	{
 	case Input::Key::W:
 		if ( (playerRows - 1) >= 0) {
-			if (myMap->map[playerRows - 1][playerCols] == '$')
+			if (myMap->getPos(playerRows - 1,playerCols) == '$')
 				score++;
-			myMap->map[playerRows][playerCols] = '.';
-			myMap->map[playerRows - 1][playerCols] = '@';
+			myMap->Modify(playerRows, playerCols, '.');
+			myMap->Modify(playerRows-1, playerCols, '@');
+			
 			playerRows -= 1;
 		}
 		break;
 	case Input::Key::A:
 		if ( (playerCols - 1) >= 0) {
-			if (myMap->map[playerRows][playerCols - 1] == '$')
+			if (myMap->getPos(playerRows,playerCols - 1) == '$')
 				score++;
-			myMap->map[playerRows][playerCols] = '.';
-			myMap->map[playerRows][playerCols - 1] = '@';
+			myMap->Modify(playerRows, playerCols, '.');
+			myMap->Modify(playerRows, playerCols-1, '@');
 			playerCols -= 1;
 		}
 		break;
 	case Input::Key::S:
 		if ( playerRows+1 < myMap->ROWS_MAP) {
-			if (myMap->map[playerRows + 1][playerCols] == '$')
+			if (myMap->getPos(playerRows + 1,playerCols) == '$')
 				score++;
-			myMap->map[playerRows][playerCols] = '.';
-			myMap->map[playerRows + 1][playerCols] = '@';
+			myMap->Modify(playerRows, playerCols, '.');
+			myMap->Modify(playerRows + 1, playerCols, '@');
 			playerRows += 1;
 		}
 		break;
 	case Input::Key::D:
 		if ( playerCols + 1 < myMap->COLUMNS_MAP) {
-			if (myMap->map[playerRows][playerCols + 1] == '$')
+			if (myMap->getPos(playerRows,playerCols + 1) == '$')
 				score++;
-			myMap->map[playerRows][playerCols] = '.';
-			myMap->map[playerRows][playerCols + 1] = '@';
+			myMap->Modify(playerRows, playerCols, '.');
+			myMap->Modify(playerRows, playerCols + 1, '@');
 			playerCols += 1;
 		}
 		break;
@@ -68,6 +69,4 @@ void Player::Move(Input::Key key) {
 
 Player::~Player()
 {
-	delete myManager;
-	delete myMap;
 }

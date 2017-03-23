@@ -8,7 +8,8 @@ Map::Map()
 {
 	std::cout << "Escoge nivel de dificultad:" << std::endl << "Pulsa 1 para nivel facil" << std::endl << "Pulsa 2 para nivel normal" << std::endl << "Pulsa 3 para nivel dificil" << std::endl;
 
-	std::cin >>difficulty;
+	std::cin >> difficulty;
+		
 
 	ROWS_MAP = 5 * difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
 	COLUMNS_MAP = 5 *difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
@@ -38,6 +39,10 @@ void Map::PrintMap() {
 		}
 		std::cout << std::endl;
 	}
+}
+
+char Map::getPos(int ROW, int COL) {
+	return map[ROW][COL];
 }
 
 Map::~Map()
