@@ -13,36 +13,28 @@ Map::Map()
 	ROWS_MAP = 5 * difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
 	COLUMNS_MAP = 5 *difficulty + rand() % ((5 * difficulty * 2) - (5 * difficulty));
 
-	map = new cell*[Map::ROWS_MAP];
+	map = new char*[Map::ROWS_MAP];
 
 	for (int i = 0; i < ROWS_MAP; i++) {
-		map[i] = new cell[COLUMNS_MAP];
+		map[i] = new char[COLUMNS_MAP];
 	}
 
 	for (int i = 0; i < ROWS_MAP; i++) {
 		for (int j = 0; j < COLUMNS_MAP; j++) {
-			map[i][j].hasCoin = false;
-			map[i][j].isPlayer = false;
-			map[i][j].symbolToShow = '.';
-			map[i][j].NUM_COLUMN = j;
-			map[i][j].NUM_ROW = i;
+			map[i][j] = '.';
 		}
 	}
 }
 
 void Map::Modify(int ROW, int COL, char value) {
-	map[ROW][COL].symbolToShow = value;
-	if (value == '$')
-		map[ROW][COL].hasCoin = true;
-	else
-		map[ROW][COL].hasCoin = false;
+	map[ROW][COL] = value;
 }
 
 void Map::PrintMap() {
 	system("CLS");
 	for (int i = 0; i < ROWS_MAP; i++) {
 		for (int j = 0; j < COLUMNS_MAP; j++) {
-			std::cout << map[i][j].symbolToShow;
+			std::cout << map[i][j];
 		}
 		std::cout << std::endl;
 	}

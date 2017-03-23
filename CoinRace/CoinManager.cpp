@@ -15,22 +15,18 @@ CoinManager::CoinManager(Map &m):myMap(&m)
 	while (i < coins) {
 		int columns = rand() % myMap->COLUMNS_MAP;
 		int rows = rand() % myMap->ROWS_MAP;
-		if (myMap->map[rows][columns].hasCoin == false && myMap->map[rows][columns].isPlayer == false) {
-			myMap->map[rows][columns].hasCoin = true;
-			myMap->map[rows][columns].symbolToShow = '$';
+		if (myMap->map[rows][columns]=='.') {
+			myMap->map[rows][columns] = '$';
 			i++;
 		}
-		else {
-		}
 	}
-	coinsPlayer = 0;
 }
 
 void CoinManager::Manage() {
 	int c = 0;
 	for (int i = 0; i < myMap->ROWS_MAP; i++) {
 		for (int j = 0; j < myMap->COLUMNS_MAP; j++) {
-			if (myMap->map[i][j].hasCoin == true) {
+			if (myMap->map[i][j] == '$') {
 				c += 1;
 			}
 
@@ -43,19 +39,14 @@ void CoinManager::Manage() {
 		while (i < coins) {
 			int columns = rand() % myMap->COLUMNS_MAP;
 			int rows = rand() % myMap->ROWS_MAP;
-			if (myMap->map[rows][columns].hasCoin == false && myMap->map[rows][columns].isPlayer == false) {
-				myMap->map[rows][columns].hasCoin = true;
-				myMap->map[rows][columns].symbolToShow = '$';
+			if (myMap->map[rows][columns] == '.') {
+				myMap->map[rows][columns] = '$';
 				i++;
-			}
-			else {
 			}
 		}
 	}
-	if (c < coins)
-		coinsPlayer++;
 	coins = c;
-	std::cout << std::endl << "Has recogido: " << coinsPlayer << "/" << coinsFinal;
+	//std::cout << std::endl << "Has recogido: " << coinsPlayer << "/" << coinsFinal;
 }
 
 CoinManager::~CoinManager()
