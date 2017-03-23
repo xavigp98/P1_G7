@@ -10,7 +10,7 @@ int main() {
 	srand(time(nullptr));
 	int difficulty;
 	Input::Key tecla;
-	std::cout << "Escoge nivel de dificultad:" << std::endl << "Pulsa 1 para nivel facil" << std::endl << "Pulsa 2 para nivel normal" << std::endl << "Pulsa 3 para nivel dificil" << std::endl;
+	std::cout << "COIN RACE" << std::endl << std::endl << "Controles: WASD" << std::endl << std::endl << std::endl << "Escoge nivel de dificultad:" << std::endl << "Pulsa 1 para nivel facil" << std::endl << "Pulsa 2 para nivel normal" << std::endl << "Pulsa 3 para nivel dificil" << std::endl;
 
 	std::cin >> difficulty;
 	Map Mapa(difficulty);
@@ -23,7 +23,7 @@ int main() {
 	while (c < 3) {
 		if (c == 1) {
 			system("CLS");
-			std::cout << myPlayer.score << "/" << Manager.coinsFinal << "!  Has recogido todas las monedas del nivel en " << t << " segundos." << std::endl;
+			std::cout << myPlayer.score << "/" << Manager.coinsFinal << "  Has recogido todas las monedas del nivel en " << t << " segundos." << std::endl << "Pulsa la tecla ESC para salir del juego";
 			c = 2;
 		}
 		if (c == 2) {
@@ -37,7 +37,7 @@ int main() {
 				myPlayer.Move(tecla);
 				Manager.Manage();
 				Mapa.PrintMap();
-				std::cout << std::endl << "Monedas recogidas: " << myPlayer.score << "/" << Manager.coinsFinal << std::endl;
+				std::cout << std::endl << "Monedas recogidas: " << myPlayer.score << "/" << Manager.coinsFinal << std::endl<< std::endl << "Pulsa la tecla ESC en cualquier momento para salir del juego";
 			}
 			if (myPlayer.score >= Manager.coinsFinal) {
 				c = 1;
