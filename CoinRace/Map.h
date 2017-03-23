@@ -1,10 +1,12 @@
 #pragma once
 class Map
 {
+
+
 public:
 
 	int difficulty, ROWS_MAP,COLUMNS_MAP;
-
+	
 	char** map;
 
 	Map();

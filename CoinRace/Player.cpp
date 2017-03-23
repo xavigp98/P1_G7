@@ -10,74 +10,59 @@
 Player::Player(Map &m, CoinManager &p):myMap(&m),myManager(&p)
 {
 	int i = 0;
-	c = 0;
 	while (i < 1) {
 		playerCols = rand() % myMap->COLUMNS_MAP;
 		playerRows = rand() % myMap->ROWS_MAP;
-		if (myMap->map[playerRows][playerCols].hasCoin == false) {
-			myMap->map[playerRows][playerCols].symbolToShow = '@';
-			myMap->map[playerRows][playerCols].isPlayer = true;
+		if (myMap->map[playerRows][playerCols]=='.') {
+			myMap->map[playerRows][playerCols]= '@';
 			i++;
 		}
 	}
-	
+	score = 0;
 }
 
-void Player::PlayerInput() {
-	switch (Input::getKey())
+void Player::Move(Input::Key key) {
+	switch (key)
 	{
 	case Input::Key::W:
-		if (myMap->map[playerRows - 1][playerCols].hasCoin == false || myMap->map[playerRows-1][playerCols].hasCoin == true && (playerRows - 1) >= 0) {
-			myMap->map[playerRows ][playerCols].hasCoin = false;
-			myMap->map[playerRows ][playerCols].symbolToShow = '.';
-			myMap->map[playerRows ][playerCols].isPlayer = false;
-			myMap->map[playerRows - 1][playerCols].hasCoin = false;
-			myMap->map[playerRows - 1][playerCols].symbolToShow = '@';
-			myMap->map[playerRows - 1][playerCols].isPlayer = true;
+		if ( (playerRows - 1) >= 0) {
+			if (myMap->map[playerRows - 1][playerCols] == '$')
+				score++;
+			myMap->map[playerRows][playerCols] = '.';
+			myMap->map[playerRows - 1][playerCols] = '@';
 			playerRows -= 1;
 		}
 		break;
 	case Input::Key::A:
-		if (myMap->map[playerRows][playerCols-1].hasCoin == false || myMap->map[playerRows][playerCols-1].hasCoin == true && playerCols - 1 >= myMap->COLUMNS_MAP - myMap->COLUMNS_MAP) {
-			myMap->map[playerRows][playerCols].hasCoin = false;
-			myMap->map[playerRows][playerCols].symbolToShow = '.';
-			myMap->map[playerRows][playerCols].isPlayer = false;
-			myMap->map[playerRows][playerCols-1].hasCoin = false;
-			myMap->map[playerRows][playerCols-1].symbolToShow = '@';
-			myMap->map[playerRows][playerCols-1].isPlayer = true;
+		if ( (playerCols - 1) >= 0) {
+			if (myMap->map[playerRows][playerCols - 1] == '$')
+				score++;
+			myMap->map[playerRows][playerCols] = '.';
+			myMap->map[playerRows][playerCols - 1] = '@';
 			playerCols -= 1;
 		}
 		break;
 	case Input::Key::S:
-		if (myMap->map[playerRows + 1 ][playerCols].hasCoin == false || myMap->map[playerRows + 1][playerCols].hasCoin == true && playerRows + 1 < myMap->ROWS_MAP) {
-			myMap->map[playerRows][playerCols].hasCoin = false;
-			myMap->map[playerRows][playerCols].symbolToShow = '.';
-			myMap->map[playerRows][playerCols].isPlayer = false;
-			myMap->map[playerRows+1][playerCols].hasCoin = false;
-			myMap->map[playerRows+1][playerCols].symbolToShow = '@';
-			myMap->map[playerRows+1][playerCols].isPlayer = true;
+		if ( playerRows+1 < myMap->ROWS_MAP) {
+			if (myMap->map[playerRows + 1][playerCols] == '$')
+				score++;
+			myMap->map[playerRows][playerCols] = '.';
+			myMap->map[playerRows + 1][playerCols] = '@';
 			playerRows += 1;
 		}
 		break;
 	case Input::Key::D:
-		if (myMap->map[playerRows][playerCols+1].hasCoin == false || myMap->map[playerRows][playerCols+1].hasCoin == true && playerCols + 1 < myMap->COLUMNS_MAP) {
-			myMap->map[playerRows][playerCols].hasCoin = false;
-			myMap->map[playerRows][playerCols].symbolToShow = '.';
-			myMap->map[playerRows][playerCols].isPlayer = false;
-			myMap->map[playerRows][playerCols+1].hasCoin = false;
-			myMap->map[playerRows][playerCols+1].symbolToShow = '@';
-			myMap->map[playerRows][playerCols+1].isPlayer = true;
+		if ( playerCols + 1 < myMap->COLUMNS_MAP) {
+			if (myMap->map[playerRows][playerCols + 1] == '$')
+				score++;
+			myMap->map[playerRows][playerCols] = '.';
+			myMap->map[playerRows][playerCols + 1] = '@';
 			playerCols += 1;
 		}
 		break;
-	case Input::Key::ESC:
-		c = 1;
 	default:
 		break;
 	}
-
-	if (myManager->coinsPlayer == myManager->coinsPlayer)
-		c = 1;
 }
 
 
