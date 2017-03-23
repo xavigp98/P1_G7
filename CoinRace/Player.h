@@ -1,11 +1,14 @@
 #pragma once
-/*class Player
+#include "Map.h"
+#include "CoinManager.h"
+class Player
 {
 public:
-	int playerCols, playerRows;
-	Map &myMap;
-	CoinManager &myManager;
+	int playerCols, playerRows, c;
+	Map *myMap;
+	CoinManager *myManager;
 	Player(Map &m, CoinManager &p);
+	void PlayerInput();
 	~Player();
-};*/
+};
 

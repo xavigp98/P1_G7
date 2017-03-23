@@ -5,9 +5,10 @@ class CoinManager
 {
 public:
 
-	int coins;
+	int coins,coinsFinal,coinsPlayer;
 	Map *myMap;
 	CoinManager(Map &m);
+	void CoinManager::Manage();
 	~CoinManager();
 };
 
