@@ -1,9 +1,7 @@
 #include "Player.h"
-#include "Map.h"
-#include "CoinManager.h"
 #include <iostream>
 #include <cstdlib>
-#include "Input.hh"
+
 
 
 
@@ -11,8 +9,8 @@ Player::Player(Map &m, CoinManager &p):myMap(&m),myManager(&p)
 {
 	int i = 0;
 	while (i < 1) {
-		playerCols = rand() % myMap->COLUMNS_MAP;
-		playerRows = rand() % myMap->ROWS_MAP;
+		playerCols = rand() % myMap->getMapCols();
+		playerRows = rand() % myMap->getMapRows();
 		if (myMap->getPos(playerRows,playerCols) =='.') {
 			myMap->Modify(playerRows, playerCols, '@');
 			i++;
@@ -44,7 +42,7 @@ void Player::Move(Input::Key key) {
 		}
 		break;
 	case Input::Key::S:
-		if ( playerRows+1 < myMap->ROWS_MAP) {
+		if ( playerRows+1 < myMap->getMapRows()) {
 			if (myMap->getPos(playerRows + 1,playerCols) == '$')
 				score++;
 			myMap->Modify(playerRows, playerCols, '.');
@@ -53,7 +51,7 @@ void Player::Move(Input::Key key) {
 		}
 		break;
 	case Input::Key::D:
-		if ( playerCols + 1 < myMap->COLUMNS_MAP) {
+		if ( playerCols + 1 < myMap->getMapCols()) {
 			if (myMap->getPos(playerRows,playerCols + 1) == '$')
 				score++;
 			myMap->Modify(playerRows, playerCols, '.');
@@ -66,6 +64,9 @@ void Player::Move(Input::Key key) {
 	}
 }
 
+int Player::getScore() {
+	return score;
+}
 
 Player::~Player()
 {

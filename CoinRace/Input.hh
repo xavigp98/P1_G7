@@ -29,4 +29,4 @@ namespace Input
 		}
 		return Key::NONE;
 	}
-};
+}

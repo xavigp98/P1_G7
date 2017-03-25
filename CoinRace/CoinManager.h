@@ -3,12 +3,21 @@
 
 class CoinManager
 {
+
+private:
+
+	int coins, coinsFinal;
+
 public:
 
-	int coins,coinsFinal;
 	Map *myMap;
+	
 	CoinManager(Map &m);
-	void CoinManager::Manage();
+
+	int getCoinsFinal();
+	
+	void Manage();
+	
 	~CoinManager();
 };
 

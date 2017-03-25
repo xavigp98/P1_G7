@@ -1,10 +1,9 @@
 #include <iostream>
+#include <time.h>
+#include <ctime>
 #include "Player.h"
 #include "Map.h"
 #include "CoinManager.h"
-#include <time.h>
-#include <ctime>
-#include "Input.hh"
 
 int main() {
 	srand(time(nullptr));
@@ -20,10 +19,11 @@ int main() {
 	std::clock_t t = std::clock();
 	Manager.Manage();
 	Mapa.PrintMap();
+	std::cout << std::endl << "Monedas recogidas: " << myPlayer.getScore() << "/" << Manager.getCoinsFinal() << std::endl << std::endl << "Pulsa la tecla ESC en cualquier momento para salir del juego";
 	while (c < 3) {
 		if (c == 1) {
 			system("CLS");
-			std::cout << myPlayer.score << "/" << Manager.coinsFinal << "  Has recogido todas las monedas del nivel en " << t << " segundos." << std::endl << "Pulsa la tecla ESC para salir del juego";
+			std::cout << myPlayer.getScore() << "/" << Manager.getCoinsFinal() << "  Has recogido todas las monedas del nivel en " << t << " segundos." << std::endl << "Pulsa la tecla ESC para salir del juego";
 			c = 2;
 		}
 		if (c == 2) {
@@ -37,9 +37,9 @@ int main() {
 				myPlayer.Move(tecla);
 				Manager.Manage();
 				Mapa.PrintMap();
-				std::cout << std::endl << "Monedas recogidas: " << myPlayer.score << "/" << Manager.coinsFinal << std::endl<< std::endl << "Pulsa la tecla ESC en cualquier momento para salir del juego";
+				std::cout << std::endl << "Monedas recogidas: " << myPlayer.getScore() << "/" << Manager.getCoinsFinal() << std::endl<< std::endl << "Pulsa la tecla ESC en cualquier momento para salir del juego";
 			}
-			if (myPlayer.score >= Manager.coinsFinal) {
+			if (myPlayer.getScore() >= Manager.getCoinsFinal()) {
 				c = 1;
 				t = ((std::clock() - t) / (double)CLOCKS_PER_SEC);
 			}

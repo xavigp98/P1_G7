@@ -23,6 +23,18 @@ Map::Map(int dificultad)
 	}
 }
 
+int Map::getMapCols() {
+	return COLUMNS_MAP;
+}
+
+int Map::getMapRows() {
+	return ROWS_MAP;
+}
+
+int Map::getDifficulty() {
+	return difficulty;
+}
+
 void Map::Modify(int ROW, int COL, char value) {
 	map[ROW][COL] = value;
 }
@@ -31,7 +43,7 @@ void Map::PrintMap() {
 	system("CLS");
 	for (int i = 0; i < ROWS_MAP; i++) {
 		for (int j = 0; j < COLUMNS_MAP; j++) {
-			std::cout << map[i][j];
+			std::cout << map[i][j] << " ";
 		}
 		std::cout << std::endl;
 	}

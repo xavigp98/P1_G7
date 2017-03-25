@@ -1,20 +1,19 @@
 #include "CoinManager.h"
-#include "Map.h"
 #include <iostream>
 #include <cstdlib>
 
 
 CoinManager::CoinManager(Map &m):myMap(&m)
 {
-	coins = (static_cast<int>(myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.03 )+ rand() % static_cast<int>(((myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.13)- (myMap->COLUMNS_MAP * myMap->ROWS_MAP)*0.03);
+	coins = (static_cast<int>(myMap->getMapCols() * myMap->getMapRows()) * 0.03 )+ rand() % static_cast<int>(((myMap->getMapCols() * myMap->getMapRows()) * 0.13)- (myMap->getMapCols() * myMap->getMapRows())*0.03);
 
-	coinsFinal = 30 * myMap->difficulty + rand() % ((30 *myMap->difficulty * 2) - (30 * myMap->difficulty));
+	coinsFinal = 30 * myMap->getDifficulty() + rand() % ((30 *myMap->getDifficulty() * 2) - (30 * myMap->getDifficulty()));
 
 	int i = 0;
 
 	while (i < coins) {
-		int columns = rand() % myMap->COLUMNS_MAP;
-		int rows = rand() % myMap->ROWS_MAP;
+		int columns = rand() % myMap->getMapCols();
+		int rows = rand() % myMap->getMapRows();
 		if (myMap->getPos(rows,columns)=='.') {
 			myMap->Modify(rows,columns,'$');
 			i++;
@@ -24,8 +23,8 @@ CoinManager::CoinManager(Map &m):myMap(&m)
 
 void CoinManager::Manage() {
 	int c = 0;
-	for (int i = 0; i < myMap->ROWS_MAP; i++) {
-		for (int j = 0; j < myMap->COLUMNS_MAP; j++) {
+	for (int i = 0; i < myMap->getMapRows(); i++) {
+		for (int j = 0; j < myMap->getMapCols(); j++) {
 			if (myMap->getPos(i,j) == '$') {
 				c += 1;
 			}
@@ -34,11 +33,11 @@ void CoinManager::Manage() {
 	}
 	if (c <= 0) {
 		int i = 0;
-		coins = (static_cast<int>(myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.03) + rand() % static_cast<int>(((myMap->COLUMNS_MAP * myMap->ROWS_MAP) * 0.13) - (myMap->COLUMNS_MAP * myMap->ROWS_MAP)*0.03);
+		coins = (static_cast<int>(myMap->getMapCols() * myMap->getMapRows()) * 0.03) + rand() % static_cast<int>(((myMap->getMapCols() * myMap->getMapRows()) * 0.13) - (myMap->getMapCols() * myMap->getMapRows())*0.03);
 
 		while (i < coins) {
-			int columns = rand() % myMap->COLUMNS_MAP;
-			int rows = rand() % myMap->ROWS_MAP;
+			int columns = rand() % myMap->getMapCols();
+			int rows = rand() % myMap->getMapRows();
 			if (myMap->getPos(rows,columns) == '.') {
 				myMap->Modify(rows,columns,'$');
 				i++;
@@ -46,6 +45,10 @@ void CoinManager::Manage() {
 		}
 	}
 	coins = c;
+}
+
+int CoinManager::getCoinsFinal() {
+	return coinsFinal;
 }
 
 CoinManager::~CoinManager()
