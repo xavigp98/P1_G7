@@ -15,11 +15,11 @@ public:
 	
 	CoinManager *myManager;
 	
-	Player(Map &m, CoinManager &p);
+	Player(Map &m, CoinManager &p); //Funcion que situa al jugador en una posicion aleatoria que no tenga moneda, guarda la posicion del jugador y pone el score a 0
 	
-	void Move(Input::Key key);
+	void Move(Input::Key key); // Funcion que recibe una tecla y mueve al jugador en la posicion dada por la tecla. Si el jugador coge una moneda, se actualiza el score
 
-	int getScore();
+	int getScore(); //Funcion que devuelve el valor de la variable score
 	
 	~Player();
 };

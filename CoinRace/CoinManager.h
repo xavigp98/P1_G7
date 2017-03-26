@@ -12,11 +12,11 @@ public:
 
 	Map *myMap;
 	
-	CoinManager(Map &m);
+	CoinManager(Map &m); //Funcion que rellena el mapa de monedas, calcula el numero de monedas maximo de la partida
 
-	int getCoinsFinal();
+	int getCoinsFinal(); //Funcion que devuelve el valor de la variable coinsFinal
 	
-	void Manage();
+	void Manage();//Funcion que cuenta el numero de monedas que hay en el mapa y si es <= 0 lo vuelve a rellenar
 	
 	~CoinManager();
 };
